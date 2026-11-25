@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NihongoSan | Japanese Vocabulary Flashcards</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f4f6fb}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px}
+main{width:min(560px,100%);background:white;border:1px solid #e3e7ef;border-radius:20px;padding:28px;box-shadow:0 12px 40px #17203312;text-align:center}
+small{color:#667085}h1{font-size:1.35rem;margin:0 0 22px}.card{background:#f8f9fc;border-radius:16px;padding:30px 16px;margin:16px 0}
+#word{font-size:2.5rem;font-weight:700}#kana{font-size:1.2rem;color:#475467;margin-top:8px}#romaji{color:#667085;margin-top:8px}
+#meaning{font-size:1.35rem;font-weight:600;min-height:2rem;margin-top:18px}
+button{border:0;border-radius:10px;padding:12px 18px;font-size:1rem;font-weight:600;cursor:pointer;margin:5px}
+.primary{background:#1d4ed8;color:white}.secondary{background:#e9eefb;color:#1d3b75}
+</style>
+</head>
+<body>
+<main>
+<small>NIHONGOSAN · BEGINNER PRACTICE</small>
+<h1>Japanese Vocabulary Flashcards</h1>
+<div class="card">
+<div id="word">日本語</div><div id="kana">にほんご</div><div id="romaji">nihongo</div>
+<div id="meaning" aria-live="polite">?</div>
+</div>
+<button class="secondary" id="show">Show answer</button>
+<button class="primary" id="next">Next word</button>
+<p><small id="count"></small></p>
+</main>
+<script>
+const words = [
+["日本語","にほんご","nihongo","জাপানি ভাষা"],["学生","がくせい","gakusei","শিক্ষার্থী"],
+["先生","せんせい","sensei","শিক্ষক"],["学校","がっこう","gakkou","স্কুল"],
+["友達","ともだち","tomodachi","বন্ধু"],["家","いえ","ie","বাড়ি"],
+["水","みず","mizu","পানি"],["食べる","たべる","taberu","খাওয়া"],
+["飲む","のむ","nomu","পান করা"],["見る","みる","miru","দেখা"],
+["行く","いく","iku","যাওয়া"],["来る","くる","kuru","আসা"],
+["大きい","おおきい","ookii","বড়"],["小さい","ちいさい","chiisai","ছোট"],
+["今日","きょう","kyou","আজ"],["明日","あした","ashita","আগামীকাল"],
+["昨日","きのう","kinou","গতকাল"],["本","ほん","hon","বই"],
+["車","くるま","kuruma","গাড়ি"],["猫","ねこ","neko","বিড়াল"]
+];
+let index=0;
+const el=id=>document.getElementById(id);
+function render(){const w=words[index];el("word").textContent=w[0];el("kana").textContent=w[1];el("romaji").textContent=w[2];el("meaning").textContent="?";el("count").textContent=`Card ${index+1} of ${words.length}`;}
+el("show").addEventListener("click",()=>el("meaning").textContent=words[index][3]);
+el("next").addEventListener("click",()=>{index=(index+1)%words.length;render();});
+render();
+</script>
+</body>
+</html>
